@@ -1,0 +1,15 @@
+<html>
+<head>
+<title>Honeymoon Test</title>
+<script type="text/javascript" src=" {{staticURL(self)}}zepto.min.js"></script>
+</head>
+<body>
+<p>
+Hello {{name}}
+You have just won {{value}} dollars!
+{{#in_ca}}
+Well, {{taxed_value}} dollars, after taxes.
+{{/in_ca}}
+</p>
+</body>
+</html>
