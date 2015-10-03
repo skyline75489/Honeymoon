@@ -10,6 +10,7 @@
 		2D0809441BBA453200802920 /* Honeymoon.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D0809431BBA453200802920 /* Honeymoon.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2D0809501BBA453200802920 /* HoneymoonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D08094F1BBA453200802920 /* HoneymoonTests.swift */; };
 		2D4A69E31BBAAD3C00535F47 /* Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4A69E21BBAAD3C00535F47 /* Regex.swift */; settings = {ASSET_TAGS = (); }; };
+		2D83CF731BBF7AF3002A28AF /* TestForm.mustache in Resources */ = {isa = PBXBuildFile; fileRef = 2D83CF721BBF7AF3002A28AF /* TestForm.mustache */; settings = {ASSET_TAGS = (); }; };
 		2DA24DDC1BBA690F0037A50A /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA24DDB1BBA690F0037A50A /* Server.swift */; settings = {ASSET_TAGS = (); }; };
 		2DA24DDE1BBA6AF80037A50A /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA24DDD1BBA6AF80037A50A /* Router.swift */; settings = {ASSET_TAGS = (); }; };
 		2DA24DE11BBA6B320037A50A /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA24DE01BBA6B320037A50A /* Request.swift */; settings = {ASSET_TAGS = (); }; };
@@ -39,6 +40,7 @@
 		2D08094F1BBA453200802920 /* HoneymoonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoneymoonTests.swift; sourceTree = "<group>"; };
 		2D0809511BBA453200802920 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2D4A69E21BBAAD3C00535F47 /* Regex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Regex.swift; sourceTree = "<group>"; };
+		2D83CF721BBF7AF3002A28AF /* TestForm.mustache */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TestForm.mustache; sourceTree = "<group>"; };
 		2DA24DDB1BBA690F0037A50A /* Server.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
 		2DA24DDD1BBA6AF80037A50A /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		2DA24DE01BBA6B320037A50A /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				2DA24DE81BBA8DD90037A50A /* zepto.min.js */,
+				2D83CF721BBF7AF3002A28AF /* TestForm.mustache */,
 				2DA24DE61BBA7EA80037A50A /* Test.mustache */,
 				2D08094F1BBA453200802920 /* HoneymoonTests.swift */,
 				2D0809511BBA453200802920 /* Info.plist */,
@@ -241,6 +244,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2DA24DE71BBA7EA80037A50A /* Test.mustache in Resources */,
+				2D83CF731BBF7AF3002A28AF /* TestForm.mustache in Resources */,
 				2DA24DE91BBA8DD90037A50A /* zepto.min.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

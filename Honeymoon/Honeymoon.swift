@@ -8,7 +8,7 @@
 
 import Foundation
 import Mustache
-
+import GCDWebServer
 
 public class Honeymoon {
     private let server = Server()
@@ -36,11 +36,19 @@ public class Honeymoon {
     }
     
     public func post(route:String, handlerClosure:HandlerClosure) {
-        self.route(route, method: "POST", handlerClosure: handlerClosure)
+        self.route(route, method: "POST", requestClass: GCDWebServerURLEncodedFormRequest.self, handlerClosure: handlerClosure)
     }
     
-    public func route(route:String, method:String, handlerClosure: HandlerClosure) {
-        self.server.addRoute(route, method: method, handlerClosure: handlerClosure)
+    public func put(route:String, handlerClosure:HandlerClosure) {
+        self.route(route, method: "PUT", handlerClosure: handlerClosure)
+    }
+
+    public func delete(route:String, handlerClosure:HandlerClosure) {
+        self.route(route, method: "DELETE", handlerClosure: handlerClosure)
+    }
+
+    public func route(route:String, method:String, requestClass:AnyClass=GCDWebServerRequest.self, handlerClosure: HandlerClosure) {
+        self.server.addRoute(route, method: method, requestClass:requestClass, handlerClosure: handlerClosure)
     }
     
     public func addStaticHandler(dir:String) {

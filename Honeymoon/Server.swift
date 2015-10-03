@@ -25,16 +25,21 @@ public class Server {
             errorResp.statusCode = 404
             return errorResp
         })
+        webServer.addDefaultHandlerForMethod("POST", requestClass: GCDWebServerRequest.self, processBlock: {request in
+            let errorResp =  GCDWebServerDataResponse(HTML: "<html><body><h3>Not Found</h3></body></html>")
+            errorResp.statusCode = 404
+            return errorResp
+        })
     }
     
-    public func addRoute(route:String, method: String, handlerClosure: HandlerClosure) {
+    public func addRoute(route:String, method: String, requestClass: AnyClass=GCDWebServerRequest.self, handlerClosure: HandlerClosure) {
         let r = Rule(rule: route, method: method)
         if r.variables.count > 0 {
             let h = Handler(path: route, method: method, handlerClosure: handlerClosure, pathRegex: r._regex?.pattern, parameters: r.variables)
-            self.addHandlerWithParameter(h)
+            self.addHandlerWithParameter(h, requestClass: requestClass)
         } else {
             let h = Handler(path: route, method: method, handlerClosure: handlerClosure)
-            self.addHandler(h)
+            self.addHandler(h, requestClass: requestClass)
         }
     }
     
@@ -42,8 +47,8 @@ public class Server {
         self.webServer.addGETHandlerForBasePath(basePath, directoryPath: dir, indexFilename: nil, cacheAge: 3600, allowRangeRequests: false)
     }
     
-    private func addHandler(handler:Handler) {
-        webServer.addHandlerForMethod(handler.method, path: handler.path, requestClass: GCDWebServerRequest.self, processBlock: { request in
+    private func addHandler(handler:Handler, requestClass:AnyClass=GCDWebServerRequest.self) {
+        webServer.addHandlerForMethod(handler.method, path: handler.path, requestClass: requestClass, processBlock: { request in
             
             let req = self.prepareRequest(request)
             let resp = handler.handlerClosure!(req)
@@ -59,8 +64,8 @@ public class Server {
         })
     }
     
-    private func addHandlerWithParameter(handler: Handler) {
-        webServer.addHandlerForMethod(handler.method, pathRegex: handler.pathRegex, requestClass: GCDWebServerRequest.self, processBlock: { request in
+    private func addHandlerWithParameter(handler: Handler, requestClass:AnyClass=GCDWebServerRequest.self) {
+        webServer.addHandlerForMethod(handler.method, pathRegex: handler.pathRegex, requestClass: requestClass, processBlock: { request in
             
             let r = Regex(pattern: handler.pathRegex!)
             var params = [String:String]()
@@ -90,6 +95,14 @@ public class Server {
         req.method = request.method
         req.path = request.path
         req.params = routeParams
+        if let r = request as? GCDWebServerURLEncodedFormRequest {
+            req.form = [String:String]()
+            for (k, v) in r.arguments {
+                let newKey = String(k)
+                let newValue = v as! String
+                req.form?[newKey] = newValue
+            }
+        }
         return req
     }
     

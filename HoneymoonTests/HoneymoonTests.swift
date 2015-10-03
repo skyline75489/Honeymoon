@@ -36,6 +36,14 @@ class HoneymoonTests: XCTestCase {
             return app.renderTemplate("Test", data: ["name": "Chester","value": 10000, "taxed_value": 10000 - (10000 * 0.4), "in_ca": true])
         }
         
+        app.get("/form") { req in
+            return app.renderTemplate("TestForm")
+        }
+        
+        app.post("/post") { req in
+            let c = req.form!["content"]!
+            return "\(c)"
+        }
         app.start()
 
     }
