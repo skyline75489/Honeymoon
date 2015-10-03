@@ -57,3 +57,13 @@ app.get("/testRedirect") { req in
 }
 ```
 
+## Try it out
+
+Currently there's a [bug](https://github.com/Carthage/Carthage/issues/808) in Xcode when trying to use Swift framework in OS X command line application. So the example code is now in the tests.
+
+Clone the project , use `pod install` to install the dependencies. Open the generated `xcworkspace` file and use `Cmd + U` to run the test. Go to `localhost:8000` and that's it.
+
+
+## License
+
+The MIT License
