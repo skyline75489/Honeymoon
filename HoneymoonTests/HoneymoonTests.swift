@@ -20,12 +20,15 @@ class HoneymoonTests: XCTestCase {
         app.templateBundle = bundle
         app.staticPath = bundle.resourcePath
         
-        app.get("/hello") { req in
-            return "Hello"
+        app.get("/hello/<int:id>/story/<userId>") { req in
+            let id = req.params!["id"]!
+            let userId = req.params!["userId"]!
+            return "Hello: \(id) \(userId)"
         }
         
-        app.get("/list/:userId/:userName") { req in
-            return "list"
+        app.get("/list/<userId>") { req in
+            let userId = req.params!["userId"]!
+            return "list\(userId)"
         }
         
         app.get("/test") { req in

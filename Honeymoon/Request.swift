@@ -14,4 +14,5 @@ public class Request {
     public var headers:Dictionary<String,String>?
     public var path:String?
     public var query:Dictionary<String,String>?
+    public var params:[String:String]?
 }
