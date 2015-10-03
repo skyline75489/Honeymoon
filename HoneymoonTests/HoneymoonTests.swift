@@ -14,8 +14,9 @@ class HoneymoonTests: XCTestCase {
     override func setUp() {
         super.setUp()
         
-        let bundle = NSBundle(forClass: self.dynamicType)
         let app = Honeymoon()
+
+        let bundle = NSBundle(forClass: self.dynamicType)
         
         app.templateBundle = bundle
         app.staticPath = bundle.resourcePath

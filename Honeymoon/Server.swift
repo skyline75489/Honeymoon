@@ -27,7 +27,7 @@ public class Server {
         })
     }
     
-    public func addRoute(var route:String, method: String, handlerClosure: HandlerClosure) {
+    public func addRoute(route:String, method: String, handlerClosure: HandlerClosure) {
         let r = Rule(rule: route, method: method)
         if r.variables.count > 0 {
             let h = Handler(path: route, method: method, handlerClosure: handlerClosure, pathRegex: r._regex?.pattern, parameters: r.variables)
@@ -36,7 +36,6 @@ public class Server {
             let h = Handler(path: route, method: method, handlerClosure: handlerClosure)
             self.addHandler(h)
         }
-        
     }
     
     public func addStaticHandler(basePath:String, dir:String) {

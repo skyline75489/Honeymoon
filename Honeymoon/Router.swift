@@ -10,7 +10,6 @@ import Foundation
 
 public typealias HandlerClosure = (Request) -> AnyObject
 
-let VALID_METHODS = ["HEAD", "GET", "POST", "DELETE", "PUT"]
 
 let RULE_PATTERN = Regex(pattern: "([^<]*)<(?:([a-zA-Z_][a-zA-Z0-9_]*):)?([a-zA-Z_][a-zA-Z0-9_]*)>")
 
