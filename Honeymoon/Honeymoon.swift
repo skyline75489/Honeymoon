@@ -29,6 +29,7 @@ public class Honeymoon {
             return _staticPath
         }
     }
+    private var templateCache = [String:Template]()
     
     public func get(route:String, handlerClosure:HandlerClosure) {
         self.route(route, method: "GET", handlerClosure: handlerClosure)
@@ -48,7 +49,14 @@ public class Honeymoon {
     
     public func renderTemplate(templateName:String, data:[String:AnyObject]?=nil, bundle:NSBundle?=nil) -> String {
         let b = bundle ?? self.templateBundle
-        if let template = try? Template(named: templateName, bundle: b, templateExtension: "mustache", encoding: NSUTF8StringEncoding) {
+        if let template = self.templateCache[templateName] {
+            if let r = try? template.render(Box(data)) {
+                return r
+            }
+        }
+        else if let template = try? Template(named: templateName, bundle: b, templateExtension: "mustache", encoding: NSUTF8StringEncoding) {
+            
+            templateCache[templateName] = template
             if let s = self.staticURLFilter {
                 template.registerInBaseContext("staticURL", Box(s))
             }
