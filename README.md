@@ -5,7 +5,7 @@ A tiny web framework written in Swift 2.0, built on top of [GCDWebServer](https:
 
 ## Usage
 
-Honeymoon itself is heavily inspired by [Flask](http://flask.pocoo.org). 
+Honeymoon itself is heavily inspired by [Flask](http://flask.pocoo.org). At this moment, Honeymoon provides these following APIs:
 
 
 ```swift
@@ -44,7 +44,7 @@ app.get("/testTemplate") { req in
 ```swift 
 app.post("/post") { req in
     let c = req.form!["content"]!
-    return "\(c)"
+    return "Content: \(c)"
 }
 ```
 
