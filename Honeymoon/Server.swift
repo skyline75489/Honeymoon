@@ -107,6 +107,10 @@ public class Server {
     }
     
     private func prepareResponse(response: Response) -> GCDWebServerResponse {
+        if let redirect = response.redirect {
+            return GCDWebServerResponse(redirect: NSURL(string: redirect), permanent: false)
+        }
+        
         let resp = GCDWebServerDataResponse.init(HTML: response.body)
         resp.statusCode = response.statusCode!
         resp.contentType = response.contentType

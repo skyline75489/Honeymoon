@@ -75,6 +75,10 @@ public class Honeymoon {
         return ""
     }
     
+    public func redirect(location:String) -> Response {
+        return Response(location: location)
+    }
+    
     public func start(port:UInt?=nil) {
         self.server.start(port)
     }

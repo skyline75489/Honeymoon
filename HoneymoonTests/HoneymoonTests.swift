@@ -21,6 +21,10 @@ class HoneymoonTests: XCTestCase {
         app.templateBundle = bundle
         app.staticPath = bundle.resourcePath
         
+        app.get("/") { req in
+            return "Honeymoon stared."
+        }
+        
         app.get("/hello/<int:id>/story/<userId>") { req in
             let id = req.params!["id"]!
             let userId = req.params!["userId"]!
@@ -32,11 +36,11 @@ class HoneymoonTests: XCTestCase {
             return "list\(userId)"
         }
         
-        app.get("/test") { req in
+        app.get("/testTemplate") { req in
             return app.renderTemplate("Test", data: ["name": "Chester","value": 10000, "taxed_value": 10000 - (10000 * 0.4), "in_ca": true])
         }
         
-        app.get("/form") { req in
+        app.get("/testForm") { req in
             return app.renderTemplate("TestForm")
         }
         
@@ -44,6 +48,15 @@ class HoneymoonTests: XCTestCase {
             let c = req.form!["content"]!
             return "\(c)"
         }
+        
+        app.get("/testRedirect") { req in
+            return app.redirect("/target")
+        }
+        
+        app.get("/target") { req in
+            return "Redirected."
+        }
+        
         app.start()
 
     }
